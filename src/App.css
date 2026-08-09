@@ -1,184 +1,267 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+/* --- App.css --- */
+:root {
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --secondary: #3B82F6;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --dark: #1E293B;
+  --text-muted: #64748B;
+  --bg-color: #F1F5F9;
+  --card-bg: #FFFFFF;
+  --border-color: #CBD5E1;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--dark);
 }
 
-#center {
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-title {
+  margin: 0 0 5px 0;
+  font-size: 1.8rem;
+}
+
+.header-subtitle {
+  color: var(--text-muted);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* --- Area Filter --- */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-card {
+  background-color: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;
+  min-width: 280px; /* Memaksa turun di layar kecil */
+}
+
+.filter-card label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.filter-input {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* --- Kartu Metrik --- */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.metric-card {
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.metric-card h1 {
+  margin: 10px 0;
+  font-size: 1.8rem;
+}
+
+.metric-sub {
+  margin: 0;
+  font-size: 0.85rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* --- Area Konten Bawah --- */
+.content-grid {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
+  gap: 20px;
+}
 
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
+/* Untuk Desktop: Tabel Kiri, Menu Kanan */
+@media (min-width: 992px) {
+  .content-grid {
+    flex-direction: row;
+  }
+  .table-section {
+    flex: 2;
+  }
+  .menu-section {
+    flex: 1;
   }
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
+.content-card {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.content-card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  border-bottom: 2px solid var(--bg-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* --- Tabel Responsif --- */
+.table-responsive {
+  overflow-x: auto; /* Kunci agar tabel bisa di-swipe di HP */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
   text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  font-size: 0.9rem;
+  white-space: nowrap; /* Mencegah teks tabel turun baris berantakan */
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+th {
+  background-color: var(--bg-color);
+  padding: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
-#next-steps ul {
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--bg-color);
+}
+
+/* --- Daftar Menu --- */
+.menu-list {
   list-style: none;
   padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.menu-item {
   display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.9rem;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.section-label {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
 }
 
-.ticks {
-  position: relative;
+/* --- Modal (Pop-up) Styles --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
   width: 100%;
+  max-width: 550px;
+  max-height: 85vh;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--bg-color);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 5px;
+}
+
+.view-all-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-all-btn:hover {
+  background-color: #E2E8F0;
+  border-color: #94A3B8;
 }
